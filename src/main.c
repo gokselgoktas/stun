@@ -62,7 +62,7 @@ int main(int count, char **arguments)
 		 * render operations you can easily apply post-processing
 		 * effects and filters to your render product. */
 
-		blit(ACCUMULATION, temporary[0]);
+		blit_accumulator_to_layer(ACCUMULATION, temporary[0]);
 
 		/* Here's an example of a post-processing filter, applying
 		 * Gaussian Blur to the contents of the accumulation buffer. */
