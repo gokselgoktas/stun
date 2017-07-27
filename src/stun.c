@@ -41,12 +41,12 @@
  * Attention: This is an internal value; and every texture has a well-defined
  * purpose.  Hence, modifying this value irresponsibly might lead to extremely
  * serious problems.  Change it carefully. */
-#define WZ2X82FB                                2
+#define WZ2X82FB 2
 
-#if !defined (USE_GLEW_FOR_OPENGL_EXTENSIONS) && (FRAMEWORK != GHOST)
-        /* This array of pointers holds the function pointers to the OpenGL
-         * extension functions which are dynamically loaded. */
-        void *R5UU5MEU[NUMBER_OF_EXTENSIONS];
+#if !defined(USE_GLEW_FOR_OPENGL_EXTENSIONS) && (FRAMEWORK != GHOST)
+/* This array of pointers holds the function pointers to the OpenGL
+ * extension functions which are dynamically loaded. */
+void *R5UU5MEU[NUMBER_OF_EXTENSIONS];
 #endif /* !defined (USE_GLEW_FOR_OPENGL_EXTENSIONS) && (FRAMEWORK != GHOST) */
 
 /* This is the FBO that is used while generating meshes.  It has a certain
@@ -63,49 +63,47 @@ texture_t PXDKBCRM[WZ2X82FB]; /* attachments */
  * the pipeline. */
 shader_t MUANXLC;
 
-#if defined (GENERATE_ACCUMULATION_LAYER)
-        /* This is the automatically created post-processing layer that is used
-         * as the accumulation layer for the render products. */
-        accumulator_t *P4E6JEEC;
+#if defined(GENERATE_ACCUMULATION_LAYER)
+/* This is the automatically created post-processing layer that is used
+ * as the accumulation layer for the render products. */
+accumulator_t *P4E6JEEC;
 #endif /* defined (GENERATE_ACCUMULATION_LAYER) */
 
 #if (FRAMEWORK != MINIMAL)
-        /* If a FRAMEWORK other than MINIMAL is used, then Stun will require
-         * some extra storage space for storing the width and height
-         * information of a possible window. */
-        int TVJAYSLH[2];
+/* If a FRAMEWORK other than MINIMAL is used, then Stun will require
+ * some extra storage space for storing the width and height
+ * information of a possible window. */
+int TVJAYSLH[2];
 #endif /* FRAMEWORK != MINIMAL */
 
 /* This is the array of pointers to the null-terminated C-strings that contain
  * unique shader fragments (called stitches) from which we can procedurally
  * generate various shaders. */
 static char const *const Z886594B[NUMBER_OF_STITCHES] = {
-        "#define x(m) g+=texture2D(f,s m vec2(",
-        "0.,float(v)*t",
-        "float(v)*t,0.",
-        "))*a[14-v]\nuniform sampler2D f;uniform float m,a[15];void main(){vec"
-        "2 s=gl_TexCoord[0].xy;float t=1./m;vec4 g=texture2D(f,s)*a[14];for(in"
-        "t v=0;v<14;v++)x(+),x(-);gl_FragData[0]=g;}",
-        "void main(){gl_TexCoord[0]=gl_MultiTexCoord0;gl_TexCoord[1]=gl_MultiT"
-        "exCoord1;gl_TexCoord[2]=gl_MultiTexCoord2;gl_TexCoord[3]=gl_MultiTexC"
-        "oord3;gl_Position = ftransform();}",
-        "void main(){vec2 y=gl_FragCoord.xy;gl_FragData[0]=vec4(sin(cos(sin(y."
-        "y)*y.x*5.)*y.y*55.)*.5+.5);}",
-        "vec4 t(vec4 y){return mod((y*34.+1.)*y,289.);}float r(vec3 y){float v"
-        "=1./6.;vec3 d=floor(y+dot(y,vec3(1./3.))),f=y-d+dot(d,vec3(v)),x=step"
-        "(f.yzx,f),w=1.-x,a=min(x,w.zxy),z=max(x,w.zxy),p=f-a+v,r=f-z+2.*v,o=f"
-        "-1.+3.*v;d=mod(d,289.);vec4 m=t(t(t(d.z+vec4(0.,a.z,z.z,1.))+d.y+vec4"
-        "(0.,a.y,z.y,1.))+d.x+vec4(0.,a.x,z.x,1.));v=1./7.;vec4 s=m-49.*floor("
-        "m*v*v),e=floor(s*v),c=floor(s-7.*e);e=2.*v*(e-3.25);c=2.*v*(c-3.25);s"
-        "=1.-abs(e)-abs(c);m=-step(s,vec4(0.));vec2 l=e.zw;e.zw=c.xy;c.xy=l;e="
-        "e.xzyw;c=c.xzyw;e+=(floor(e)*2.+1.)*m.xxyy;c+=(floor(c)*2.+1.)*m.zzww"
-        ";vec3 n=vec3(e.xy,s.x),u=vec3(e.zw,s.y),b=vec3(c.xy,s.z),i=vec3(c.zw,"
-        "s.w);s=1.8-.85*vec4(dot(n,n),dot(u,u),dot(b,b),dot(i,i));vec4 Z=max(."
-        "6-vec4(dot(f,f),dot(p,p),dot(r,r),dot(o,o)),0.);return 42.*dot(pow(Z,"
-        "vec4(4.)),vec4(dot(n*s.x,f),dot(u*s.y,p),dot(b*s.z,r),dot(i*s.w,o)));"
-        "}",
-        "uniform float f,o,a;void main(){float y=0.,x=0.;for(;x<o;++x)y+=r(gl_"
-        "TexCoord[0].xyz*pow(2.,x)*f)*pow(a,x);gl_FragData[0]=vec4(y)*.5+.5;}",
+    "#define x(m) g+=texture2D(f,s m vec2(", "0.,float(v)*t", "float(v)*t,0.",
+    "))*a[14-v]\nuniform sampler2D f;uniform float m,a[15];void main(){vec"
+    "2 s=gl_TexCoord[0].xy;float t=1./m;vec4 g=texture2D(f,s)*a[14];for(in"
+    "t v=0;v<14;v++)x(+),x(-);gl_FragData[0]=g;}",
+    "void main(){gl_TexCoord[0]=gl_MultiTexCoord0;gl_TexCoord[1]=gl_MultiT"
+    "exCoord1;gl_TexCoord[2]=gl_MultiTexCoord2;gl_TexCoord[3]=gl_MultiTexC"
+    "oord3;gl_Position = ftransform();}",
+    "void main(){vec2 y=gl_FragCoord.xy;gl_FragData[0]=vec4(sin(cos(sin(y."
+    "y)*y.x*5.)*y.y*55.)*.5+.5);}",
+    "vec4 t(vec4 y){return mod((y*34.+1.)*y,289.);}float r(vec3 y){float v"
+    "=1./6.;vec3 d=floor(y+dot(y,vec3(1./3.))),f=y-d+dot(d,vec3(v)),x=step"
+    "(f.yzx,f),w=1.-x,a=min(x,w.zxy),z=max(x,w.zxy),p=f-a+v,r=f-z+2.*v,o=f"
+    "-1.+3.*v;d=mod(d,289.);vec4 m=t(t(t(d.z+vec4(0.,a.z,z.z,1.))+d.y+vec4"
+    "(0.,a.y,z.y,1.))+d.x+vec4(0.,a.x,z.x,1.));v=1./7.;vec4 s=m-49.*floor("
+    "m*v*v),e=floor(s*v),c=floor(s-7.*e);e=2.*v*(e-3.25);c=2.*v*(c-3.25);s"
+    "=1.-abs(e)-abs(c);m=-step(s,vec4(0.));vec2 l=e.zw;e.zw=c.xy;c.xy=l;e="
+    "e.xzyw;c=c.xzyw;e+=(floor(e)*2.+1.)*m.xxyy;c+=(floor(c)*2.+1.)*m.zzww"
+    ";vec3 n=vec3(e.xy,s.x),u=vec3(e.zw,s.y),b=vec3(c.xy,s.z),i=vec3(c.zw,"
+    "s.w);s=1.8-.85*vec4(dot(n,n),dot(u,u),dot(b,b),dot(i,i));vec4 Z=max(."
+    "6-vec4(dot(f,f),dot(p,p),dot(r,r),dot(o,o)),0.);return 42.*dot(pow(Z,"
+    "vec4(4.)),vec4(dot(n*s.x,f),dot(u*s.y,p),dot(b*s.z,r),dot(i*s.w,o)));"
+    "}",
+    "uniform float f,o,a;void main(){float y=0.,x=0.;for(;x<o;++x)y+=r(gl_"
+    "TexCoord[0].xyz*pow(2.,x)*f)*pow(a,x);gl_FragData[0]=vec4(y)*.5+.5;}",
 };
 
 /* And this is the array that stores the final stitched sources before passing
@@ -121,8 +119,9 @@ static char const *HH5MTZTK[MAXIMUM_STITCH_SIZE];
 program_t FOBIMQQB[ON3400B7];
 
 /* This is the condition for the preprocessor block below. */
-#define EVX04ESH (FRAMEWORK == MINIMAL) && (defined (_WIN32) ||               \
-                 (defined (__APPLE__) && defined (__MACH__)))
+#define EVX04ESH              \
+    (FRAMEWORK == MINIMAL) && \
+        (defined(_WIN32) || (defined(__APPLE__) && defined(__MACH__)))
 
 /* On some platforms, certain dedicated memory management functions depend on
  * memset et al., which are implemented in the CRT (which is not available with
@@ -134,138 +133,131 @@ program_t FOBIMQQB[ON3400B7];
  * their own implementations.  Therefor, the conditional takes this into
  * account, also. */
 #if (EVX04ESH)
-        /* The custom implementation of fill. */
-        void fill(void *pointer, int value, unsigned int size)
-        {
-                register unsigned char *output = pointer;
+/* The custom implementation of fill. */
+void fill(void *pointer, int value, unsigned int size)
+{
+    register unsigned char *output = pointer;
 
-                while (size-- > 0) {
-                        *(output++) = (unsigned char) value;
-                }
-        }
+    while (size-- > 0) {
+        *(output++) = (unsigned char) value;
+    }
+}
 
-        /* The custom implementation of mirror. */
-        void mirror(void const *from, void *to, unsigned int size)
-        {
-                register unsigned char const *input = from;
-                register unsigned char *output = to;
+/* The custom implementation of mirror. */
+void mirror(void const *from, void *to, unsigned int size)
+{
+    register unsigned char const *input = from;
+    register unsigned char *output = to;
 
-                while (size-- > 0) {
-                        *(output++) = (*input++);
-                }
-        }
+    while (size-- > 0) {
+        *(output++) = (*input++);
+    }
+}
 #endif /* EVX04ESH */
 
 /* This is the first task of the loader.  It simply performs the loading and
  * allocation of fundamental resources, such as OpenGL extensions. */
 void ST664M60(void)
 {
-        int i = 0;
-        float *gaussian_weights;
+    int i = 0;
+    float *gaussian_weights;
 
-        unsigned char stitches[] = {
-                0, 0, 3, END_STITCH_STREAM,     /* Gaussian Blur */
-                6, 7, END_STITCH_STREAM,        /* Simplex Noise [generator] */
-        };
+    unsigned char stitches[] = {
+        0, 0, 3, END_STITCH_STREAM, /* Gaussian Blur */
+        6, 7, END_STITCH_STREAM, /* Simplex Noise [generator] */
+    };
 
-        J5F2LXAZ(); /* voodoo */
+    J5F2LXAZ(); /* voodoo */
 
-        glGenFramebuffers(1, &HVATQD0L);
-        glBindFramebuffer(GL_FRAMEBUFFER, HVATQD0L);
+    glGenFramebuffers(1, &HVATQD0L);
+    glBindFramebuffer(GL_FRAMEBUFFER, HVATQD0L);
 
-        for (; i < WZ2X82FB; ++i) {
-                PXDKBCRM[i] = texture(MAXIMUM_MESH_GRID_WIDTH,
-                                      MAXIMUM_MESH_GRID_HEIGHT, 0,
-                                      GL_RGB16F, GL_RGB, GL_FLOAT, NULL);
+    for (; i < WZ2X82FB; ++i) {
+        PXDKBCRM[i] = texture(MAXIMUM_MESH_GRID_WIDTH, MAXIMUM_MESH_GRID_HEIGHT,
+            0, GL_RGB16F, GL_RGB, GL_FLOAT, NULL);
 
-                glFramebufferTexture2D(GL_FRAMEBUFFER,
-                                       GL_COLOR_ATTACHMENT0 + i,
-                                       GL_TEXTURE_2D,
-                                       PXDKBCRM[i], 0);
-        }
+        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0 + i,
+            GL_TEXTURE_2D, PXDKBCRM[i], 0);
+    }
 
-        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-        MUANXLC = shader(Z886594B[4], GL_VERTEX_SHADER);
+    MUANXLC = shader(Z886594B[4], GL_VERTEX_SHADER);
 
-#       if defined (GENERATE_ACCUMULATION_LAYER)
-                P4E6JEEC = accumulator(WINDOW_WIDTH, WINDOW_HEIGHT);
-#       endif /* defined (GENERATE_ACCUMULATION_LAYER) */
+#if defined(GENERATE_ACCUMULATION_LAYER)
+    P4E6JEEC = accumulator(WINDOW_WIDTH, WINDOW_HEIGHT);
+#endif /* defined (GENERATE_ACCUMULATION_LAYER) */
 
-        gaussian_weights = generate_gaussian_weights(5);
+    gaussian_weights = generate_gaussian_weights(5);
 
-        for (i = 0; i < 2; ++i) {
-                stitches[1] = i + 1;
+    for (i = 0; i < 2; ++i) {
+        stitches[1] = i + 1;
 
-                FOBIMQQB[i] = program(DEFAULT_VERTEX_SHADER, DISCARD,
-                                      stitch(stitches, GL_FRAGMENT_SHADER));
+        FOBIMQQB[i] = program(DEFAULT_VERTEX_SHADER, DISCARD,
+            stitch(stitches, GL_FRAGMENT_SHADER));
 
-                glUseProgram(FOBIMQQB[i]);
+        glUseProgram(FOBIMQQB[i]);
 
-                glUniform1fv(glGetUniformLocation(FOBIMQQB[i], "a"), 15,
-                             gaussian_weights);
-        }
+        glUniform1fv(
+            glGetUniformLocation(FOBIMQQB[i], "a"), 15, gaussian_weights);
+    }
 
-        glUseProgram(0);
+    glUseProgram(0);
 
-        FOBIMQQB[2] = pixel_shader(Z886594B[5]);
-        FOBIMQQB[3] = program(DEFAULT_VERTEX_SHADER, DISCARD,
-                              stitch(&(stitches[4]), GL_FRAGMENT_SHADER));
+    FOBIMQQB[2] = pixel_shader(Z886594B[5]);
+    FOBIMQQB[3] = program(DEFAULT_VERTEX_SHADER, DISCARD,
+        stitch(&(stitches[4]), GL_FRAGMENT_SHADER));
 
-#       if defined (EXTEND_RESOURCE_MANAGEMENT)
-                dispose(gaussian_weights);
-#       endif /* defined (EXTEND_RESOURCE_MANAGEMENT) */
+#if defined(EXTEND_RESOURCE_MANAGEMENT)
+    dispose(gaussian_weights);
+#endif /* defined (EXTEND_RESOURCE_MANAGEMENT) */
 }
 
 /* The array of function pointers which point to the loader functions to be
  * called by the loading system. */
-loader_t P744X1EL[NUMBER_OF_LOADERS] = {
-        ST664M60
-};
+loader_t P744X1EL[NUMBER_OF_LOADERS] = {ST664M60};
 
-#if defined (EXTEND_RESOURCE_MANAGEMENT)
-        /* This is the first task of the unloader.  Contrastingly to its loader
-         * counterpart it performs the unloading and freeing of fundamental
-         * resources. */
-        void TJOZD8F4(void)
-        {
-                int i = 0;
+#if defined(EXTEND_RESOURCE_MANAGEMENT)
+/* This is the first task of the unloader.  Contrastingly to its loader
+ * counterpart it performs the unloading and freeing of fundamental
+ * resources. */
+void TJOZD8F4(void)
+{
+    int i = 0;
 
-                glDeleteTextures(WZ2X82FB, PXDKBCRM);
-                glDeleteFramebuffers(1, &HVATQD0L);
+    glDeleteTextures(WZ2X82FB, PXDKBCRM);
+    glDeleteFramebuffers(1, &HVATQD0L);
 
-#               if defined (GENERATE_ACCUMULATION_LAYER)
-                        glDeleteTextures(1, &(P4E6JEEC->attachments[0]));
-                        glDeleteTextures(1, &(P4E6JEEC->attachments[1]));
+#if defined(GENERATE_ACCUMULATION_LAYER)
+    glDeleteTextures(1, &(P4E6JEEC->attachments[0]));
+    glDeleteTextures(1, &(P4E6JEEC->attachments[1]));
 
-                        glDeleteFramebuffers(1, &(P4E6JEEC->framebuffer));
+    glDeleteFramebuffers(1, &(P4E6JEEC->framebuffer));
 
-                        dispose(P4E6JEEC);
-#               endif /* defined (GENERATE_ACCUMULATION_LAYER) */
+    dispose(P4E6JEEC);
+#endif /* defined (GENERATE_ACCUMULATION_LAYER) */
 
-                for (; i < ON3400B7; ++i) {
-                        glDeleteProgram(FOBIMQQB[i]);
-                }
-        }
+    for (; i < ON3400B7; ++i) {
+        glDeleteProgram(FOBIMQQB[i]);
+    }
+}
 
-        /* The array of function pointers which point to the resource
-         * deallocation and unloading functions to be called by the loading
-         * system. */
-        unloader_t FDC2CHR7[NUMBER_OF_LOADERS] = {
-                TJOZD8F4
-        };
+/* The array of function pointers which point to the resource
+ * deallocation and unloading functions to be called by the loading
+ * system. */
+unloader_t FDC2CHR7[NUMBER_OF_LOADERS] = {TJOZD8F4};
 #endif /* defined (EXTEND_RESOURCE_MANAGEMENT) */
 
 /* shader creates, sets the source code in and compiles a shader.  The shader
  * identifier is returned from the function. */
 shader_t shader(char const *source, int type)
 {
-        shader_t output = glCreateShader(type);
+    shader_t output = glCreateShader(type);
 
-        glShaderSource(output, 1, &source, NULL);
-        glCompileShader(output);
+    glShaderSource(output, 1, &source, NULL);
+    glCompileShader(output);
 
-        return output;
+    return output;
 }
 
 /* The following is the infamous stitcher, by Goksel, made into a proper
@@ -299,20 +291,20 @@ shader_t shader(char const *source, int type)
  * compiling it. */
 shader_t stitch(unsigned char const *indices, int type)
 {
-        shader_t output;
+    shader_t output;
 
-        unsigned char index = 0;
+    unsigned char index = 0;
 
-        for (; *indices != END_STITCH_STREAM; ++indices, ++index) {
-                HH5MTZTK[index] = Z886594B[*indices];
-        }
+    for (; *indices != END_STITCH_STREAM; ++indices, ++index) {
+        HH5MTZTK[index] = Z886594B[*indices];
+    }
 
-        output = glCreateShader(type);
+    output = glCreateShader(type);
 
-        glShaderSource(output, index, HH5MTZTK, NULL);
-        glCompileShader(output);
+    glShaderSource(output, index, HH5MTZTK, NULL);
+    glCompileShader(output);
 
-        return output;
+    return output;
 }
 
 /* program creates a program to which it attaches the given vertex, fragment
@@ -323,41 +315,40 @@ shader_t stitch(unsigned char const *indices, int type)
  * identifier to DISCARD.  However, at least a fragment shader is necessary. */
 program_t program(shader_t vertex, shader_t geometry, shader_t fragment)
 {
-        program_t output = glCreateProgram();
+    program_t output = glCreateProgram();
 
-        if (geometry != DISCARD)
-                glAttachShader(output, geometry);
+    if (geometry != DISCARD)
+        glAttachShader(output, geometry);
 
-        if (vertex != DISCARD)
-                glAttachShader(output, vertex);
+    if (vertex != DISCARD)
+        glAttachShader(output, vertex);
 
-        glAttachShader(output, fragment);
-        glLinkProgram(output);
+    glAttachShader(output, fragment);
+    glLinkProgram(output);
 
-        return output;
+    return output;
 }
 
 /* The texture function allocates an OpenGL name for a texture object as well
  * as the video memory requested by the texture. */
 texture_t texture(unsigned int width, unsigned int height, int level,
-                  int internalFormat, int format, int type, void *data)
+    int internalFormat, int format, int type, void *data)
 {
-        texture_t output;
+    texture_t output;
 
-        glGenTextures(1, &output);
-        glBindTexture(GL_TEXTURE_2D, output);
+    glGenTextures(1, &output);
+    glBindTexture(GL_TEXTURE_2D, output);
 
-        glTexImage2D(GL_TEXTURE_2D, level, internalFormat, width, height, 0,
-                     format, type, data);
+    glTexImage2D(GL_TEXTURE_2D, level, internalFormat, width, height, 0, format,
+        type, data);
 
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, 16.f);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAX_ANISOTROPY_EXT, 16.f);
 
+    glBindTexture(GL_TEXTURE_2D, 0);
 
-        glBindTexture(GL_TEXTURE_2D, 0);
-
-        return output;
+    return output;
 }
 
 /* The layer function creates a post-processing layer; essentially an FBO with
@@ -365,23 +356,23 @@ texture_t texture(unsigned int width, unsigned int height, int level,
  * layers don't sport a fancy depth buffer. */
 layer_t *layer(unsigned int width, unsigned int height)
 {
-        layer_t *output = allocate(sizeof(layer_t));
+    layer_t *output = allocate(sizeof(layer_t));
 
-        output->width = width;
-        output->height = height;
+    output->width = width;
+    output->height = height;
 
-        glGenFramebuffers(1, &(output->framebuffer));
-        glBindFramebuffer(GL_FRAMEBUFFER, output->framebuffer);
+    glGenFramebuffers(1, &(output->framebuffer));
+    glBindFramebuffer(GL_FRAMEBUFFER, output->framebuffer);
 
-        output->attachment = texture(width, height, 0, GL_RGBA16F, GL_RGBA,
-                                     GL_FLOAT, NULL);
+    output->attachment =
+        texture(width, height, 0, GL_RGBA16F, GL_RGBA, GL_FLOAT, NULL);
 
-        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
-                               GL_TEXTURE_2D, output->attachment, 0);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
+        output->attachment, 0);
 
-        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-        return output;
+    return output;
 }
 
 /* The depth function provides a special kind of a layer; an FBO with a
@@ -389,26 +380,26 @@ layer_t *layer(unsigned int width, unsigned int height)
  * from the layer function the texture is a depth attachment. */
 layer_t *depth(unsigned int width, unsigned int height)
 {
-        layer_t *output = allocate(sizeof(layer_t));
+    layer_t *output = allocate(sizeof(layer_t));
 
-        output->width = width;
-        output->height = height;
+    output->width = width;
+    output->height = height;
 
-        glGenFramebuffers(1, &(output->framebuffer));
-        glBindFramebuffer(GL_FRAMEBUFFER, output->framebuffer);
+    glGenFramebuffers(1, &(output->framebuffer));
+    glBindFramebuffer(GL_FRAMEBUFFER, output->framebuffer);
 
-        output->attachment = texture(width, height, 0, GL_DEPTH_COMPONENT,
-                                     GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+    output->attachment = texture(width, height, 0, GL_DEPTH_COMPONENT,
+        GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
 
-        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT,
-                               GL_TEXTURE_2D, output->attachment, 0);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D,
+        output->attachment, 0);
 
-        glDrawBuffer(GL_NONE);
-        glReadBuffer(GL_NONE);
+    glDrawBuffer(GL_NONE);
+    glReadBuffer(GL_NONE);
 
-        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-        return output;
+    return output;
 }
 
 /* The accumulator function provides yet another special kind of layer; an FBO
@@ -416,31 +407,29 @@ layer_t *depth(unsigned int width, unsigned int height)
  * depth texture. */
 accumulator_t *accumulator(unsigned int width, unsigned int height)
 {
-        accumulator_t *output = allocate(sizeof(accumulator_t));
+    accumulator_t *output = allocate(sizeof(accumulator_t));
 
-        output->width = width;
-        output->height = height;
+    output->width = width;
+    output->height = height;
 
-        glGenFramebuffers(1, &(output->framebuffer));
-        glBindFramebuffer(GL_FRAMEBUFFER, output->framebuffer);
+    glGenFramebuffers(1, &(output->framebuffer));
+    glBindFramebuffer(GL_FRAMEBUFFER, output->framebuffer);
 
-        output->attachments[0] =
-                texture(width, height, 0, GL_RGBA16F, GL_RGBA, GL_FLOAT,
-                        NULL);
+    output->attachments[0] =
+        texture(width, height, 0, GL_RGBA16F, GL_RGBA, GL_FLOAT, NULL);
 
-        output->attachments[1] =
-                texture(width, height, 0, GL_DEPTH_COMPONENT24,
-                        GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
+    output->attachments[1] = texture(width, height, 0, GL_DEPTH_COMPONENT24,
+        GL_DEPTH_COMPONENT, GL_FLOAT, NULL);
 
-        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
-                               GL_TEXTURE_2D, output->attachments[0], 0);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D,
+        output->attachments[0], 0);
 
-        glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT,
-                               GL_TEXTURE_2D, output->attachments[1], 0);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_TEXTURE_2D,
+        output->attachments[1], 0);
 
-        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-        return output;
+    return output;
 }
 
 /* The mesh function is the implementation of a crazy idea that does hopefully
@@ -473,238 +462,234 @@ accumulator_t *accumulator(unsigned int width, unsigned int height)
  * realtime with no further calculations required! */
 mesh_t *mesh(program_t gpu_program, unsigned int width, unsigned int height)
 {
-        /* This is the width of the generation canvas we use.
-         *
-         * It's one pixel larger than the requested width, because the last
-         * quad on each row requires this for its right-side vertices. */
-        unsigned int const x_span = width + 1;
+    /* This is the width of the generation canvas we use.
+     *
+     * It's one pixel larger than the requested width, because the last
+     * quad on each row requires this for its right-side vertices. */
+    unsigned int const x_span = width + 1;
 
-        /* This is the height of the generation canvas.
-         *
-         * Again the reason it is one pixel larger than the requested height,
-         * because the last quad on each column requires this for its bottom
-         * vertices. */
-        unsigned int const y_span = height + 1;
+    /* This is the height of the generation canvas.
+     *
+     * Again the reason it is one pixel larger than the requested height,
+     * because the last quad on each column requires this for its bottom
+     * vertices. */
+    unsigned int const y_span = height + 1;
 
-        /* There are exactly two faces (= triangles) per quad.  Hence the
-         * number of faces is the same as two times the product of width and
-         * height. */
-        unsigned int const number_of_faces = (width * height) << 1;
+    /* There are exactly two faces (= triangles) per quad.  Hence the
+     * number of faces is the same as two times the product of width and
+     * height. */
+    unsigned int const number_of_faces = (width * height) << 1;
 
-        /* Every quad has four vertices and unless they are the last or the
-         * first quads in a row or a column then all of their vertices are
-         * shared.
-         *
-         * This means we need to address the unshared vertices at each column
-         * and at each row. */
-        unsigned int const number_of_vertices = x_span * y_span;
+    /* Every quad has four vertices and unless they are the last or the
+     * first quads in a row or a column then all of their vertices are
+     * shared.
+     *
+     * This means we need to address the unshared vertices at each column
+     * and at each row. */
+    unsigned int const number_of_vertices = x_span * y_span;
 
-        /* These are the color attachments of our FBO to which we will store
-         * our geometry products. */
-        unsigned int draw_buffers[] = {
-                GL_COLOR_ATTACHMENT0, /* Vertex positions. */
-                GL_COLOR_ATTACHMENT1  /* UVW coordinates. */
-        };
+    /* These are the color attachments of our FBO to which we will store
+     * our geometry products. */
+    unsigned int draw_buffers[] = {
+        GL_COLOR_ATTACHMENT0, /* Vertex positions. */
+        GL_COLOR_ATTACHMENT1 /* UVW coordinates. */
+    };
 
-        /* The following two are used as counters for the for-loop that lays
-         * out the quad grid. */
-        unsigned int x = 0;
-        unsigned int y;
+    /* The following two are used as counters for the for-loop that lays
+     * out the quad grid. */
+    unsigned int x = 0;
+    unsigned int y;
 
-        /* And the following one is used as the current index count, every quad
-         * has six vertices hence this increases by six per quad. */
-        unsigned int index = 0;
+    /* And the following one is used as the current index count, every quad
+     * has six vertices hence this increases by six per quad. */
+    unsigned int index = 0;
 
-        /* We start off by allocating memory for our mesh. */
-        mesh_t *mesh = allocate(sizeof(mesh_t));
+    /* We start off by allocating memory for our mesh. */
+    mesh_t *mesh = allocate(sizeof(mesh_t));
 
-        /* The three there is because every single vertex has three components.
-         * And each component is a float. */
-        mesh->vertices = allocate(number_of_vertices * 3 * sizeof(float));
+    /* The three there is because every single vertex has three components.
+     * And each component is a float. */
+    mesh->vertices = allocate(number_of_vertices * 3 * sizeof(float));
 
-        /* Same goes for the normals.  Every vertex has a normal vector which
-         * is a three-component float. */
-        mesh->normals = allocate(number_of_vertices * 3 * sizeof(float));
+    /* Same goes for the normals.  Every vertex has a normal vector which
+     * is a three-component float. */
+    mesh->normals = allocate(number_of_vertices * 3 * sizeof(float));
 
-        /* And, in companion to the normal, every vertex also features a
-         * tangent vector.  Just like a normal vector, it is also a
-         * three-component float. */
-        mesh->tangents = allocate(number_of_vertices * 3 * sizeof(float));
+    /* And, in companion to the normal, every vertex also features a
+     * tangent vector.  Just like a normal vector, it is also a
+     * three-component float. */
+    mesh->tangents = allocate(number_of_vertices * 3 * sizeof(float));
 
-        /* Here comes the UVW coordinates.  These are meant for texturing and
-         * each vertex has three UVW coordinates. */
-        mesh->uvw_coordinates =
-                allocate(number_of_vertices * 3 * sizeof(float));
+    /* Here comes the UVW coordinates.  These are meant for texturing and
+     * each vertex has three UVW coordinates. */
+    mesh->uvw_coordinates = allocate(number_of_vertices * 3 * sizeof(float));
 
-        /* Finally the indices.  Each indice specifies the index of the three
-         * vertices that make up a face.  So there are number of faces times
-         * three indices in total. */
-        mesh->indices =
-                allocate(number_of_faces * 3 * sizeof(unsigned int));
+    /* Finally the indices.  Each indice specifies the index of the three
+     * vertices that make up a face.  So there are number of faces times
+     * three indices in total. */
+    mesh->indices = allocate(number_of_faces * 3 * sizeof(unsigned int));
 
-        /* We store the number of faces our mesh has. */
-        mesh->number_of_faces = number_of_faces;
+    /* We store the number of faces our mesh has. */
+    mesh->number_of_faces = number_of_faces;
 
-        /* And of course the number of vertex attributes it has. */
-        mesh->number_of_vertices = number_of_vertices;
+    /* And of course the number of vertex attributes it has. */
+    mesh->number_of_vertices = number_of_vertices;
 
-        /* - - - - - - - - - - - - - - - - 8< - - - - - - - - - - - - - - - */
+    /* - - - - - - - - - - - - - - - - 8< - - - - - - - - - - - - - - - */
 
-        /* We're done with allocating space for the mesh.  Next up is to
-         * actually generate it! */
+    /* We're done with allocating space for the mesh.  Next up is to
+     * actually generate it! */
 
-        /* Store the current OpenGL viewport values.  We don't want to mess
-         * with them for good reasons. */
-        glPushAttrib(GL_VIEWPORT_BIT);
+    /* Store the current OpenGL viewport values.  We don't want to mess
+     * with them for good reasons. */
+    glPushAttrib(GL_VIEWPORT_BIT);
 
-        /* Go go, action bronco.  We bind our (hopefully, successfully created)
-         * FBO that contains 16-bit floating-point render targets. */
-        glBindFramebuffer(GL_FRAMEBUFFER, HVATQD0L);
+    /* Go go, action bronco.  We bind our (hopefully, successfully created)
+     * FBO that contains 16-bit floating-point render targets. */
+    glBindFramebuffer(GL_FRAMEBUFFER, HVATQD0L);
 
-        /* Here we specify to which color attachments of our FBO we'll be
-         * writing to. */
-        glDrawBuffers(2, draw_buffers);
+    /* Here we specify to which color attachments of our FBO we'll be
+     * writing to. */
+    glDrawBuffers(2, draw_buffers);
 
-        /* Set the orthographic projection.  This ensures that every vertex of
-         * every quad maps onto a pixel on the screen.
-         *
-         * Note that it also changes the viewport accordingly. */
-        orthographic(x_span, y_span);
+    /* Set the orthographic projection.  This ensures that every vertex of
+     * every quad maps onto a pixel on the screen.
+     *
+     * Note that it also changes the viewport accordingly. */
+    orthographic(x_span, y_span);
 
-        /* Finally activate the modelling GPU program and let the fun kick. */
-        glUseProgram(gpu_program);
+    /* Finally activate the modelling GPU program and let the fun kick. */
+    glUseProgram(gpu_program);
 
-        /* Send the dimensions of the render grid to the GPU program.  Every
-         * modelling GPU program must have a vec2 uniform for receiving the
-         * dimensions of the modelling surface. */
-        glUniform2f(glGetUniformLocation(gpu_program, "_resolution"),
-                (float) width, (float) height);
+    /* Send the dimensions of the render grid to the GPU program.  Every
+     * modelling GPU program must have a vec2 uniform for receiving the
+     * dimensions of the modelling surface. */
+    glUniform2f(glGetUniformLocation(gpu_program, "_resolution"), (float) width,
+        (float) height);
 
-        /* Here we lay our quad grid on our canvas.  Basically all we do is to
-         * lay them in a way that will construct one huge full-viewport
-         * rectangle with no holes or gaps.
-         *
-         * This ensures the continuity of the surface of our mesh when the GPU
-         * program starts modelling it.  It's free too! */
-        for (; x < width; ++x) {
-                for (y = 0; y < height; ++y) {
-                        /* Here we calculate the output index of our current
-                         * triangle's upper-left vertex.
-                         *
-                         * We can assure this because the work-flow of 'glRect'
-                         * is very well defined in the OpenGL Specification.
-                         *
-                         * We use this index to procedurally fill our mesh's
-                         * index array. */
-                        unsigned int const vertex = x + y * x_span;
+    /* Here we lay our quad grid on our canvas.  Basically all we do is to
+     * lay them in a way that will construct one huge full-viewport
+     * rectangle with no holes or gaps.
+     *
+     * This ensures the continuity of the surface of our mesh when the GPU
+     * program starts modelling it.  It's free too! */
+    for (; x < width; ++x) {
+        for (y = 0; y < height; ++y) {
+            /* Here we calculate the output index of our current
+             * triangle's upper-left vertex.
+             *
+             * We can assure this because the work-flow of 'glRect'
+             * is very well defined in the OpenGL Specification.
+             *
+             * We use this index to procedurally fill our mesh's
+             * index array. */
+            unsigned int const vertex = x + y * x_span;
 
-                        /* Yay, we put a happy quad on our grid. */
-                        glRecti(x, y, x + 2, y + 2);
+            /* Yay, we put a happy quad on our grid. */
+            glRecti(x, y, x + 2, y + 2);
 
-                        /* And finally we also fill in our indices to the
-                         * mesh's index array.  Thanks to 'glRect' being so
-                         * well defined we can actually procedurally generate
-                         * these!
-                         *
-                         * The order in which we draw (and hence index) our
-                         * triangles is the same order that 'glRect' uses:
-                         *
-                         * 3-------<-------2  As the shape to the left shows,
-                         * |             / |  this is the order in which we
-                         * |           /   |  index our triangles:
-                         * |         /     |
-                         * |      > <      ^  0 - 1 - 2 for the first face &
-                         * |     /         |  0 - 2 - 3 for the second face.
-                         * |   /           |
-                         * | /             |
-                         * 0------->-------1 */
+            /* And finally we also fill in our indices to the
+             * mesh's index array.  Thanks to 'glRect' being so
+             * well defined we can actually procedurally generate
+             * these!
+             *
+             * The order in which we draw (and hence index) our
+             * triangles is the same order that 'glRect' uses:
+             *
+             * 3-------<-------2  As the shape to the left shows,
+             * |             / |  this is the order in which we
+             * |           /   |  index our triangles:
+             * |         /     |
+             * |      > <      ^  0 - 1 - 2 for the first face &
+             * |     /         |  0 - 2 - 3 for the second face.
+             * |   /           |
+             * | /             |
+             * 0------->-------1 */
 
-                        /* This is the bottom-left vertex of our quad and of
-                         * our first triangle. */
-                        mesh->indices[index + 0] = vertex + x_span;
+            /* This is the bottom-left vertex of our quad and of
+             * our first triangle. */
+            mesh->indices[index + 0] = vertex + x_span;
 
-                        /* And this is the bottom-right vertex of the quad and
-                         * of our triangle. */
-                        mesh->indices[index + 1] = vertex + x_span + 1;
+            /* And this is the bottom-right vertex of the quad and
+             * of our triangle. */
+            mesh->indices[index + 1] = vertex + x_span + 1;
 
-                        /* Now we finish off the first triangle with the
-                         * top-right vertex of the quad. */
-                        mesh->indices[index + 2] = vertex + 1;
+            /* Now we finish off the first triangle with the
+             * top-right vertex of the quad. */
+            mesh->indices[index + 2] = vertex + 1;
 
-                        /* And this is the bottom-left vertex of the quad, also
-                         * of our second triangle. */
-                        mesh->indices[index + 3] = vertex + x_span;
+            /* And this is the bottom-left vertex of the quad, also
+             * of our second triangle. */
+            mesh->indices[index + 3] = vertex + x_span;
 
-                        /* Now the top-right vertex of the quad again… */
-                        mesh->indices[index + 4] = vertex + 1;
+            /* Now the top-right vertex of the quad again… */
+            mesh->indices[index + 4] = vertex + 1;
 
-                        /* And the last vertex that forms our second triangle
-                         * and of course this also finalizes our quad. */
-                        mesh->indices[index + 5] = vertex;
+            /* And the last vertex that forms our second triangle
+             * and of course this also finalizes our quad. */
+            mesh->indices[index + 5] = vertex;
 
-                        /* On to the next quad! */
-                        index += 6;
-                }
+            /* On to the next quad! */
+            index += 6;
         }
+    }
 
-        /* Disable the GPU program.  Forgetting this would certainly lead to
-         * disasters! */
-        glUseProgram(0);
+    /* Disable the GPU program.  Forgetting this would certainly lead to
+     * disasters! */
+    glUseProgram(0);
 
-        /* - - - - - - - - - - - - - - - - 8< - - - - - - - - - - - - - - - - */
+    /* - - - - - - - - - - - - - - - - 8< - - - - - - - - - - - - - - - - */
 
-        /* This is the entire trick!  We read back from our off-screen
-         * framebuffer textures into our mesh structure. */
+    /* This is the entire trick!  We read back from our off-screen
+     * framebuffer textures into our mesh structure. */
 
-        /* First and foremost of all, the vertex positions. */
-        glReadBuffer(GL_COLOR_ATTACHMENT0);
-        glReadPixels(0, 0, x_span, y_span, GL_RGB, GL_FLOAT, mesh->vertices);
+    /* First and foremost of all, the vertex positions. */
+    glReadBuffer(GL_COLOR_ATTACHMENT0);
+    glReadPixels(0, 0, x_span, y_span, GL_RGB, GL_FLOAT, mesh->vertices);
 
-        /* And then, the UVW coordinates. */
-        glReadBuffer(GL_COLOR_ATTACHMENT1);
-        glReadPixels(0, 0, x_span, y_span, GL_RGB, GL_FLOAT,
-                     mesh->uvw_coordinates);
+    /* And then, the UVW coordinates. */
+    glReadBuffer(GL_COLOR_ATTACHMENT1);
+    glReadPixels(0, 0, x_span, y_span, GL_RGB, GL_FLOAT, mesh->uvw_coordinates);
 
+    /* Make sure we restore back the framebuffer too.  Otherwise, we might
+     * end up with a crying face! */
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-        /* Make sure we restore back the framebuffer too.  Otherwise, we might
-         * end up with a crying face! */
-        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    /* Restore back the original viewport. */
+    glPopAttrib();
 
-        /* Restore back the original viewport. */
-        glPopAttrib();
+    /* Next, flush the OpenGL pipeline; so, everything up until here gets
+     * processed.
+     *
+     * It's possible that, we'll be needing the procedural data from this
+     * step in order to generate the normals and the tangent-bases.  Hence,
+     * forgetting to flush the OpenGL pipeline might lead to the corruption
+     * of normal and tangent buffers. */
+    glFinish();
 
-        /* Next, flush the OpenGL pipeline; so, everything up until here gets
-         * processed.
-         *
-         * It's possible that, we'll be needing the procedural data from this
-         * step in order to generate the normals and the tangent-bases.  Hence,
-         * forgetting to flush the OpenGL pipeline might lead to the corruption
-         * of normal and tangent buffers. */
-        glFinish();
+/* - - - - - - - - - - - - - - - [ + ] - - - - - - - - - - - - - - - */
 
-        /* - - - - - - - - - - - - - - - [ + ] - - - - - - - - - - - - - - - */
+/* Stun can be configured to calculate certain vertex attributes of a
+ * mesh (such as the tangent-space normals and the tangent vectors).
+ *
+ * This is the place where the actual calculation takes place if such
+ * a request is made. */
+#if defined(COMPUTE_VERTEX_ATTRIBUTES)
 
-        /* Stun can be configured to calculate certain vertex attributes of a
-         * mesh (such as the tangent-space normals and the tangent vectors).
-         *
-         * This is the place where the actual calculation takes place if such
-         * a request is made. */
-#       if defined (COMPUTE_VERTEX_ATTRIBUTES)
+    /* The code snippet that used to perform this task on request,
+     * has been refactored in order to achieve a more flexible
+     * solution.
+     *
+     * This newly spun-off function, compute_vertex_attributes, can
+     * be found below. */
+    compute_vertex_attributes(mesh);
 
-                /* The code snippet that used to perform this task on request,
-                 * has been refactored in order to achieve a more flexible
-                 * solution.
-                 *
-                 * This newly spun-off function, compute_vertex_attributes, can
-                 * be found below. */
-                compute_vertex_attributes(mesh);
+#endif /* defined (COMPUTE_VERTEX_ATTRIBUTES) */
 
-#       endif /* defined (COMPUTE_VERTEX_ATTRIBUTES) */
+    /* - - - - - - - - - - - - - - - [ + ] - - - - - - - - - - - - - - - */
 
-        /* - - - - - - - - - - - - - - - [ + ] - - - - - - - - - - - - - - - */
-
-        /* Return the newly created mesh.  And this is it babe. */
-        return mesh;
+    /* Return the newly created mesh.  And this is it babe. */
+    return mesh;
 }
 
 /* Given a mesh, the compute_vertex_attributes function generates certain
@@ -715,163 +700,153 @@ mesh_t *mesh(program_t gpu_program, unsigned int width, unsigned int height)
  * the specified mesh. */
 void compute_vertex_attributes(mesh_t *mesh)
 {
-        unsigned int i = 0;
+    unsigned int i = 0;
 
-        /* We start off by filling all of the vertex attribute buffers with
-         * zeros.
+    /* We start off by filling all of the vertex attribute buffers with
+     * zeros.
+     *
+     * This step is quite necessary because we'll be accumulating values in
+     * these buffers in the next step.  We, surely, wouldn't want to
+     * accumulate over garbage memory. */
+    unsigned int const size = mesh->number_of_vertices * 3 * sizeof(float);
+
+    /* These buffers will be used for value accumulation.  Thus, they need
+     * to be filled with zeroes in order to avoid surprises. */
+    zero(mesh->normals, size);
+    zero(mesh->tangents, size);
+
+    /* Then we move onto the actual calculations of vertex attributes.  For
+     * now, two components of the TBN matrix: the normal and the tangent
+     * vectors are calculated.
+     *
+     * The bitangent vector can be derived in a shader using the
+     * cross-product of the aforementioned two. */
+    for (i = 0; i < mesh->number_of_faces; ++i) {
+        unsigned int j = 0;
+
+        /* The indices of the three vertices that make up the current
+         * face we are processing. */
+        unsigned int const triangle[3] = {mesh->indices[i * 3 + 0] * 3,
+            mesh->indices[i * 3 + 1] * 3, mesh->indices[i * 3 + 2] * 3};
+
+        /* We pick the second vertex of our triangle as the reference
+         * point according to which we'll calculate the surface
+         * attributes.
          *
-         * This step is quite necessary because we'll be accumulating values in
-         * these buffers in the next step.  We, surely, wouldn't want to
-         * accumulate over garbage memory. */
-        unsigned int const size = mesh->number_of_vertices * 3 * sizeof(float);
-
-        /* These buffers will be used for value accumulation.  Thus, they need
-         * to be filled with zeroes in order to avoid surprises. */
-        zero(mesh->normals, size);
-        zero(mesh->tangents, size);
-
-        /* Then we move onto the actual calculations of vertex attributes.  For
-         * now, two components of the TBN matrix: the normal and the tangent
-         * vectors are calculated.
+         * Then we construct two vectors from this vertex to the two
+         * other vertices of the same face (= triangle).
          *
-         * The bitangent vector can be derived in a shader using the
-         * cross-product of the aforementioned two. */
-        for (i = 0; i < mesh->number_of_faces; ++i) {
-                unsigned int j = 0;
+         * We perform these calculations not only for the positions of
+         * these vertices but also for their UV coordinates.  The UV
+         * deltas are needed for calculating the tangent vector. */
+        float const edges[8] = {
+            /* The three components below form a vector from the
+             * second vertex to the first vertex.  This vector
+             * represents the first edge of our triangle. */
+            mesh->vertices[triangle[1] + 0] - mesh->vertices[triangle[0] + 0],
 
-                /* The indices of the three vertices that make up the current
-                 * face we are processing. */
-                unsigned int const triangle[3] = {
-                        mesh->indices[i * 3 + 0] * 3,
-                        mesh->indices[i * 3 + 1] * 3,
-                        mesh->indices[i * 3 + 2] * 3
-                };
+            mesh->vertices[triangle[1] + 1] - mesh->vertices[triangle[0] + 1],
 
-                /* We pick the second vertex of our triangle as the reference
-                 * point according to which we'll calculate the surface
-                 * attributes.
-                 *
-                 * Then we construct two vectors from this vertex to the two
-                 * other vertices of the same face (= triangle).
-                 *
-                 * We perform these calculations not only for the positions of
-                 * these vertices but also for their UV coordinates.  The UV
-                 * deltas are needed for calculating the tangent vector. */
-                float const edges[8] = {
-                        /* The three components below form a vector from the
-                         * second vertex to the first vertex.  This vector
-                         * represents the first edge of our triangle. */
-                        mesh->vertices[triangle[1] + 0] -
-                        mesh->vertices[triangle[0] + 0],
+            mesh->vertices[triangle[1] + 2] - mesh->vertices[triangle[0] + 2],
 
-                        mesh->vertices[triangle[1] + 1] -
-                        mesh->vertices[triangle[0] + 1],
+            /* The three components below form a vector from the
+             * second vertex to the third vertex.  This vector
+             * represents the second edge of our triangle. */
+            mesh->vertices[triangle[2] + 0] - mesh->vertices[triangle[1] + 0],
 
-                        mesh->vertices[triangle[1] + 2] -
-                        mesh->vertices[triangle[0] + 2],
+            mesh->vertices[triangle[2] + 1] - mesh->vertices[triangle[1] + 1],
 
-                        /* The three components below form a vector from the
-                         * second vertex to the third vertex.  This vector
-                         * represents the second edge of our triangle. */
-                        mesh->vertices[triangle[2] + 0] -
-                        mesh->vertices[triangle[1] + 0],
+            mesh->vertices[triangle[2] + 2] - mesh->vertices[triangle[1] + 2],
 
-                        mesh->vertices[triangle[2] + 1] -
-                        mesh->vertices[triangle[1] + 1],
+            /* The two components below form a vector from the UV
+             * coordinates of the second vertex to those of the
+             * first one.  This vector represents the first UV
+             * delta of our triangle's vertices.
+             *
+             * However, the first one of these two components is
+             * commented out as it isn't used for anything.
+             *
+             * - - - - - - - - - - - - - - - - - - - - - - - - - -
+             *
+             * mesh->uvw_coordinates[indices[0] + 0] -
+             * mesh->uvw_coordinates[indices[1] + 0], */
 
-                        mesh->vertices[triangle[2] + 2] -
-                        mesh->vertices[triangle[1] + 2],
+            mesh->uvw_coordinates[triangle[1] + 1] -
+                mesh->uvw_coordinates[triangle[0] + 1],
 
-                        /* The two components below form a vector from the UV
-                         * coordinates of the second vertex to those of the
-                         * first one.  This vector represents the first UV
-                         * delta of our triangle's vertices.
-                         *
-                         * However, the first one of these two components is
-                         * commented out as it isn't used for anything.
-                         *
-                         * - - - - - - - - - - - - - - - - - - - - - - - - - -
-                         *
-                         * mesh->uvw_coordinates[indices[0] + 0] -
-                         * mesh->uvw_coordinates[indices[1] + 0], */
+            /* The two components below form a vector from the UV
+             * coordinates of the second vertex to those of the
+             * third one.  This vector represents the second UV
+             * delta of our triangle's vertices.
+             *
+             * However, the first one of these two components is
+             * commented out as it isn't used for anything.
+             *
+             * - - - - - - - - - - - - - - - - - - - - - - - - - -
+             *
+             * mesh->uvw_coordinates[indices[2] + 0] -
+             * mesh->uvw_coordinates[indices[1] + 0], */
 
-                        mesh->uvw_coordinates[triangle[1] + 1] -
-                        mesh->uvw_coordinates[triangle[0] + 1],
+            mesh->uvw_coordinates[triangle[2] + 1] -
+                mesh->uvw_coordinates[triangle[1] + 1]};
 
-                        /* The two components below form a vector from the UV
-                         * coordinates of the second vertex to those of the
-                         * third one.  This vector represents the second UV
-                         * delta of our triangle's vertices.
-                         *
-                         * However, the first one of these two components is
-                         * commented out as it isn't used for anything.
-                         *
-                         * - - - - - - - - - - - - - - - - - - - - - - - - - -
-                         *
-                         * mesh->uvw_coordinates[indices[2] + 0] -
-                         * mesh->uvw_coordinates[indices[1] + 0], */
+        /* The non-unit normal vector can be calculated by taking the
+         * cross-product of the two edges from above. */
+        float const normal[3] = {
+            edges[1] * edges[5] - edges[4] * edges[2],
+            edges[2] * edges[3] - edges[5] * edges[0],
+            edges[0] * edges[4] - edges[3] * edges[1],
+        };
 
-                        mesh->uvw_coordinates[triangle[2] + 1] -
-                        mesh->uvw_coordinates[triangle[1] + 1]
-                };
+        /* And, the non-unit tangent vector can be calculated by
+         * scaling the two edges according to the T and B counterparts
+         * that come from the UV deltas. */
+        float const tangent[3] = {
+            edges[3] * edges[6] - edges[0] * edges[7],
+            edges[4] * edges[6] - edges[1] * edges[7],
+            edges[5] * edges[6] - edges[2] * edges[7],
+        };
 
-                /* The non-unit normal vector can be calculated by taking the
-                 * cross-product of the two edges from above. */
-                float const normal[3] = {
-                        edges[1] * edges[5] - edges[4] * edges[2],
-                        edges[2] * edges[3] - edges[5] * edges[0],
-                        edges[0] * edges[4] - edges[3] * edges[1],
-                };
+        /* Then, for each vertex we accumulate the normal and tangent
+         * vectors from each one of the faces it belongs to.
+         *
+         * This way, we can generate smooth face normals per vertex;
+         * in other words: vertex normals. */
+        for (; j < 3; ++j) {
+            mesh->normals[triangle[j] + 0] += normal[0];
+            mesh->normals[triangle[j] + 1] += normal[1];
+            mesh->normals[triangle[j] + 2] += normal[2];
 
-                /* And, the non-unit tangent vector can be calculated by
-                 * scaling the two edges according to the T and B counterparts
-                 * that come from the UV deltas. */
-                float const tangent[3] = {
-                        edges[3] * edges[6] - edges[0] * edges[7],
-                        edges[4] * edges[6] - edges[1] * edges[7],
-                        edges[5] * edges[6] - edges[2] * edges[7],
-                };
+            mesh->tangents[triangle[j] + 0] += tangent[0];
+            mesh->tangents[triangle[j] + 1] += tangent[1];
+            mesh->tangents[triangle[j] + 2] += tangent[2];
+        }
+    }
 
-                /* Then, for each vertex we accumulate the normal and tangent
-                 * vectors from each one of the faces it belongs to.
-                 *
-                 * This way, we can generate smooth face normals per vertex;
-                 * in other words: vertex normals. */
-                for (; j < 3; ++j) {
-                        mesh->normals[triangle[j] + 0] += normal[0];
-                        mesh->normals[triangle[j] + 1] += normal[1];
-                        mesh->normals[triangle[j] + 2] += normal[2];
+    /* Finally, we go through all of the vertices of the mesh, and
+     * normalize the accumulated normal and tangent vectors to obtain unit
+     * length vectors. */
+    for (i = 0; i < mesh->number_of_vertices; ++i) {
+        float magnitude = sqrtf(square(mesh->normals[i * 3 + 0]) +
+            square(mesh->normals[i * 3 + 1]) +
+            square(mesh->normals[i * 3 + 2]));
 
-                        mesh->tangents[triangle[j] + 0] += tangent[0];
-                        mesh->tangents[triangle[j] + 1] += tangent[1];
-                        mesh->tangents[triangle[j] + 2] += tangent[2];
-                }
+        if (magnitude != 0.f) {
+            mesh->normals[i * 3 + 0] /= magnitude;
+            mesh->normals[i * 3 + 1] /= magnitude;
+            mesh->normals[i * 3 + 2] /= magnitude;
         }
 
-        /* Finally, we go through all of the vertices of the mesh, and
-         * normalize the accumulated normal and tangent vectors to obtain unit
-         * length vectors. */
-        for (i = 0; i < mesh->number_of_vertices; ++i) {
-                float magnitude = sqrtf(square(mesh->normals[i * 3 + 0]) +
-                                        square(mesh->normals[i * 3 + 1]) +
-                                        square(mesh->normals[i * 3 + 2]));
+        magnitude = sqrtf(square(mesh->tangents[i * 3 + 0]) +
+            square(mesh->tangents[i * 3 + 1]) +
+            square(mesh->tangents[i * 3 + 2]));
 
-                if (magnitude != 0.f) {
-                        mesh->normals[i * 3 + 0] /= magnitude;
-                        mesh->normals[i * 3 + 1] /= magnitude;
-                        mesh->normals[i * 3 + 2] /= magnitude;
-                }
-
-                magnitude = sqrtf(square(mesh->tangents[i * 3 + 0]) +
-                                  square(mesh->tangents[i * 3 + 1]) +
-                                  square(mesh->tangents[i * 3 + 2]));
-
-                if (magnitude != 0.f) {
-                        mesh->tangents[i * 3 + 0] /= magnitude;
-                        mesh->tangents[i * 3 + 1] /= magnitude;
-                        mesh->tangents[i * 3 + 2] /= magnitude;
-                }
+        if (magnitude != 0.f) {
+            mesh->tangents[i * 3 + 0] /= magnitude;
+            mesh->tangents[i * 3 + 1] /= magnitude;
+            mesh->tangents[i * 3 + 2] /= magnitude;
         }
+    }
 }
 
 /* Given a mesh and a tolerance value, this function consolidates the given
@@ -890,60 +865,60 @@ void consolidate(mesh_t *mesh, float tolerance)
  * doesn't perform any translations, rotations or scaling. */
 void render(mesh_t const *mesh)
 {
-        glVertexPointer(3, GL_FLOAT, 0, mesh->vertices);
-        glNormalPointer(GL_FLOAT, 0, mesh->normals);
-        glColorPointer(3, GL_FLOAT, 0, mesh->tangents);
-        glTexCoordPointer(3, GL_FLOAT, 0, mesh->uvw_coordinates);
+    glVertexPointer(3, GL_FLOAT, 0, mesh->vertices);
+    glNormalPointer(GL_FLOAT, 0, mesh->normals);
+    glColorPointer(3, GL_FLOAT, 0, mesh->tangents);
+    glTexCoordPointer(3, GL_FLOAT, 0, mesh->uvw_coordinates);
 
-        glEnableClientState(GL_VERTEX_ARRAY);
-        glEnableClientState(GL_NORMAL_ARRAY);
-        glEnableClientState(GL_COLOR_ARRAY);
-        glEnableClientState(GL_TEXTURE_COORD_ARRAY);
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glEnableClientState(GL_NORMAL_ARRAY);
+    glEnableClientState(GL_COLOR_ARRAY);
+    glEnableClientState(GL_TEXTURE_COORD_ARRAY);
 
-        glDrawElements(GL_TRIANGLES, mesh->number_of_faces * 3,
-                GL_UNSIGNED_INT, mesh->indices);
+    glDrawElements(GL_TRIANGLES, mesh->number_of_faces * 3, GL_UNSIGNED_INT,
+        mesh->indices);
 
-        glDisableClientState(GL_VERTEX_ARRAY);
-        glDisableClientState(GL_NORMAL_ARRAY);
-        glDisableClientState(GL_COLOR_ARRAY);
-        glDisableClientState(GL_TEXTURE_COORD_ARRAY);
+    glDisableClientState(GL_VERTEX_ARRAY);
+    glDisableClientState(GL_NORMAL_ARRAY);
+    glDisableClientState(GL_COLOR_ARRAY);
+    glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 }
 
 /* perspective sets up a perspective projection with the given width, height
  * and aspect ratio.  It also resizes the viewport accordingly. */
 void perspective(unsigned int width, unsigned int height, float aspect_ratio)
 {
-        glViewport(0, 0, width, height);
+    glViewport(0, 0, width, height);
 
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
 
-        /* This call mimics a gluPerspective call with the following arguments:
-         *
-         *        field-of-view angle   : 45°
-         *        aspect ratio          : 'aspect_ratio'
-         *        near                  : 1.
-         *        far                   : 100. */
-        glFrustum(-FRUSTUM * aspect_ratio, +FRUSTUM * aspect_ratio, -FRUSTUM,
-                +FRUSTUM, NEAR_PLANE_DEPTH, FAR_PLANE_DEPTH);
+    /* This call mimics a gluPerspective call with the following arguments:
+     *
+     *        field-of-view angle   : 45°
+     *        aspect ratio          : 'aspect_ratio'
+     *        near                  : 1.
+     *        far                   : 100. */
+    glFrustum(-FRUSTUM * aspect_ratio, +FRUSTUM * aspect_ratio, -FRUSTUM,
+        +FRUSTUM, NEAR_PLANE_DEPTH, FAR_PLANE_DEPTH);
 
-        glMatrixMode(GL_MODELVIEW);
-        glLoadIdentity();
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
 }
 
 /* orthographic sets up a two-dimensional orthographic projection with the
  * given width and height.  Again, it also resizes the viewport accordingly. */
 void orthographic(unsigned int width, unsigned int height)
 {
-        glViewport(0, 0, width, height);
+    glViewport(0, 0, width, height);
 
-        glMatrixMode(GL_PROJECTION);
-        glLoadIdentity();
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
 
-        glOrtho(0., (double) width, (double) height, 0., -1., 1.);
+    glOrtho(0., (double) width, (double) height, 0., -1., 1.);
 
-        glMatrixMode(GL_MODELVIEW);
-        glLoadIdentity();
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
 }
 
 /* The is_interval_hit function returns true every n seconds where n is the
@@ -953,24 +928,28 @@ void orthographic(unsigned int width, unsigned int height)
  * continuous action. */
 int is_interval_hit(float *timer, float interval)
 {
-        if (since(*timer) >= interval) {
-                *timer = seconds();
-                return true;
-        }
+    if (since(*timer) >= interval) {
+        *timer = seconds();
+        return true;
+    }
 
-        return false;
+    return false;
 }
 
 /* The quad function draws a unit-textured quad of the specified width and
  * height. */
 void quad(float width, float height)
 {
-        glBegin(GL_QUADS);
-                glTexCoord2s(0, 0); glVertex2f(0.f, height);
-                glTexCoord2s(1, 0); glVertex2f(width, height);
-                glTexCoord2s(1, 1); glVertex2f(width, 0.f);
-                glTexCoord2s(0, 1); glVertex2f(0.f, 0.f);
-        glEnd();
+    glBegin(GL_QUADS);
+    glTexCoord2s(0, 0);
+    glVertex2f(0.f, height);
+    glTexCoord2s(1, 0);
+    glVertex2f(width, height);
+    glTexCoord2s(1, 1);
+    glVertex2f(width, 0.f);
+    glTexCoord2s(0, 1);
+    glVertex2f(0.f, 0.f);
+    glEnd();
 }
 
 /* far_plane renders a 2D orthographic quad whose texturing coordinates
@@ -981,29 +960,33 @@ void quad(float width, float height)
  * through each and every pixel on the screen. */
 void far_plane(unsigned short int width, unsigned short int height)
 {
-        orthographic(width, height);
+    orthographic(width, height);
 
-        glBegin(GL_QUADS);
-                glTexCoord2f(-19.882f, -12.426f); glVertex2s(0, height);
-                glTexCoord2f(+19.882f, -12.426f); glVertex2s(width, height);
-                glTexCoord2f(+19.882f, +12.426f); glVertex2s(width, 0);
-                glTexCoord2f(-19.882f, +12.426f); glVertex2s(0, 0);
-        glEnd();
+    glBegin(GL_QUADS);
+    glTexCoord2f(-19.882f, -12.426f);
+    glVertex2s(0, height);
+    glTexCoord2f(+19.882f, -12.426f);
+    glVertex2s(width, height);
+    glTexCoord2f(+19.882f, +12.426f);
+    glVertex2s(width, 0);
+    glTexCoord2f(-19.882f, +12.426f);
+    glVertex2s(0, 0);
+    glEnd();
 }
 
 /* The generate function generates the elements of the given destination layer
  * using the output from the supplied GPU program. */
 void generate(layer_t *destination, program_t generator)
 {
-        orthographic(destination->width, destination->height);
+    orthographic(destination->width, destination->height);
 
-        glBindFramebuffer(GL_FRAMEBUFFER, destination->framebuffer);
-        glUseProgram(generator);
+    glBindFramebuffer(GL_FRAMEBUFFER, destination->framebuffer);
+    glUseProgram(generator);
 
-        quad((float) destination->width, (float) destination->height);
+    quad((float) destination->width, (float) destination->height);
 
-        glUseProgram(0);
-        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glUseProgram(0);
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
 /* The transform function, as its name suggests, transforms the elements of the
@@ -1011,21 +994,21 @@ void generate(layer_t *destination, program_t generator)
  * computed render products into the destination layer. */
 void transform(layer_t *source, layer_t *destination, program_t transformer)
 {
-        orthographic(destination->width, destination->height);
+    orthographic(destination->width, destination->height);
 
-        glBindFramebuffer(GL_FRAMEBUFFER, destination->framebuffer);
+    glBindFramebuffer(GL_FRAMEBUFFER, destination->framebuffer);
 
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, source->attachment);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, source->attachment);
 
-        glUseProgram(transformer);
+    glUseProgram(transformer);
 
-        quad((float) destination->width, (float) destination->height);
+    quad((float) destination->width, (float) destination->height);
 
-        glUseProgram(0);
+    glUseProgram(0);
 
-        glBindTexture(GL_TEXTURE_2D, 0);
-        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
 /* The blit function simply blits the elements of the source layer onto the
@@ -1035,21 +1018,21 @@ void transform(layer_t *source, layer_t *destination, program_t transformer)
  * linearly scaled to fit the size of the destination layer. */
 void blit(layer_t *source, layer_t *destination)
 {
-        orthographic(destination->width, destination->height);
+    orthographic(destination->width, destination->height);
 
-        glBindFramebuffer(GL_FRAMEBUFFER, destination->framebuffer);
+    glBindFramebuffer(GL_FRAMEBUFFER, destination->framebuffer);
 
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, source->attachment);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, source->attachment);
 
-        glEnable(GL_TEXTURE_2D);
+    glEnable(GL_TEXTURE_2D);
 
-        quad((float) destination->width, (float) destination->height);
+    quad((float) destination->width, (float) destination->height);
 
-        glDisable(GL_TEXTURE_2D);
+    glDisable(GL_TEXTURE_2D);
 
-        glBindTexture(GL_TEXTURE_2D, 0);
-        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
 /* The blit_accumulator_to_layer function is a specialization of the
@@ -1060,21 +1043,21 @@ void blit(layer_t *source, layer_t *destination)
  * texture to fit the size of the destination layer. */
 void blit_accumulator_to_layer(accumulator_t *source, layer_t *destination)
 {
-        orthographic(destination->width, destination->height);
+    orthographic(destination->width, destination->height);
 
-        glBindFramebuffer(GL_FRAMEBUFFER, destination->framebuffer);
+    glBindFramebuffer(GL_FRAMEBUFFER, destination->framebuffer);
 
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, source->attachments[0]);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, source->attachments[0]);
 
-        glEnable(GL_TEXTURE_2D);
+    glEnable(GL_TEXTURE_2D);
 
-        quad((float) destination->width, (float) destination->height);
+    quad((float) destination->width, (float) destination->height);
 
-        glDisable(GL_TEXTURE_2D);
+    glDisable(GL_TEXTURE_2D);
 
-        glBindTexture(GL_TEXTURE_2D, 0);
-        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glBindTexture(GL_TEXTURE_2D, 0);
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
 /* The blit_to_back_buffer function is a specialization of the functionality
@@ -1084,67 +1067,67 @@ void blit_accumulator_to_layer(accumulator_t *source, layer_t *destination)
  * back-buffer, scaling the texture to cover the entire window. */
 void blit_to_back_buffer(layer_t *source)
 {
-        orthographic(WINDOW_WIDTH, WINDOW_HEIGHT);
+    orthographic(WINDOW_WIDTH, WINDOW_HEIGHT);
 
-        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
 
-        glActiveTexture(GL_TEXTURE0);
-        glBindTexture(GL_TEXTURE_2D, source->attachment);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, source->attachment);
 
-        glEnable(GL_TEXTURE_2D);
+    glEnable(GL_TEXTURE_2D);
 
-        quad((float) WINDOW_WIDTH, (float) WINDOW_HEIGHT);
+    quad((float) WINDOW_WIDTH, (float) WINDOW_HEIGHT);
 
-        glDisable(GL_TEXTURE_2D);
-        glBindTexture(GL_TEXTURE_2D, 0);
+    glDisable(GL_TEXTURE_2D);
+    glBindTexture(GL_TEXTURE_2D, 0);
 }
 
-#if defined (ENABLE_MATHEMATICS_SUPPORT)
-        /* This function, as its name suggests, generates an array of Gaussian
-         * weights.  This array can be extremely useful for doing things like
-         * Gaussian-blur. */
-        float *generate_gaussian_weights(float standard_deviation)
-        {
-                int const width = (int) (3.f * standard_deviation) - 1;
-                int const size = (width << 1) + 1;
+#if defined(ENABLE_MATHEMATICS_SUPPORT)
+/* This function, as its name suggests, generates an array of Gaussian
+ * weights.  This array can be extremely useful for doing things like
+ * Gaussian-blur. */
+float *generate_gaussian_weights(float standard_deviation)
+{
+    int const width = (int) (3.f * standard_deviation) - 1;
+    int const size = (width << 1) + 1;
 
-                float sum = 0.f;
-                float *output = allocate(size * sizeof(float));
+    float sum = 0.f;
+    float *output = allocate(size * sizeof(float));
 
-                int i = 0;
-                for (; i < size; ++i) {
-                        output[i] = gaussian((float) (i - width),
-                                             standard_deviation);
-                        sum += output[i];
-                }
+    int i = 0;
+    for (; i < size; ++i) {
+        output[i] = gaussian((float) (i - width), standard_deviation);
+        sum += output[i];
+    }
 
-                for (i = 0; i < size; ++i) {
-                        output[i] /= sum;
-                }
+    for (i = 0; i < size; ++i) {
+        output[i] /= sum;
+    }
 
-                return output;
-        }
+    return output;
+}
 
-        /* With the MINIMAL framework, Stun assumes that the floating-point
-         * model is 'fast'; which means, the intrinsics are available. */
-#       if (FRAMEWORK == MINIMAL)
-                /* However, on Visual C++, without the CRT, the compiler can't
-                 * link against its intrinsics.  But, of course, Stun can
-                 * exploit this to our benefit. */
-#               if defined (_MSC_VER)
-                        /* _CIsqrt calculates the square root of the given,
-                         * positive (including zero), floating-point value. */
-                        __declspec (naked) float _CIsqrt()
-                        {
-                                __asm { fsqrt
-                                        ret };
-                        }
+/* With the MINIMAL framework, Stun assumes that the floating-point
+ * model is 'fast'; which means, the intrinsics are available. */
+#if (FRAMEWORK == MINIMAL)
+/* However, on Visual C++, without the CRT, the compiler can't
+ * link against its intrinsics.  But, of course, Stun can
+ * exploit this to our benefit. */
+#if defined(_MSC_VER)
+/* _CIsqrt calculates the square root of the given,
+ * positive (including zero), floating-point value. */
+__declspec(naked) float _CIsqrt()
+{
+    __asm { fsqrt
+                                        ret}
+    ;
+}
 
-                        /* _CIexp calculates the exponential function for the
-                         * given floating-point value. */
-                        __declspec (naked) float _CIexp()
-                        {
-                                __asm { fldl2e
+/* _CIexp calculates the exponential function for the
+ * given floating-point value. */
+__declspec(naked) float _CIexp()
+{
+    __asm { fldl2e
                                         fmulp st(1), st(0)
                                         fld1
                                         fld st(1)
@@ -1153,24 +1136,27 @@ void blit_to_back_buffer(layer_t *source)
                                         faddp st(1), st(0)
                                         fscale
                                         fstp st(1)
-                                        ret };
-                        }
+                                        ret}
+    ;
+}
 
-                        /* _CIsin calculates the sine of the given value; which
-                         * is an angle (in radians). */
-                        __declspec (naked) float _CIsin()
-                        {
-                                __asm { fsin
-                                        ret };
-                        }
+/* _CIsin calculates the sine of the given value; which
+ * is an angle (in radians). */
+__declspec(naked) float _CIsin()
+{
+    __asm { fsin
+                                        ret}
+    ;
+}
 
-                        /* _CIcos calculates the cosine of the given value;
-                         * which is an angle (in radians). */
-                        __declspec (naked) float _CIcos()
-                        {
-                                __asm { fcos
-                                        ret };
-                        }
-#               endif /* defined (_MSC_VER) */
-#       endif /* FRAMEWORK == MINIMAL */
+/* _CIcos calculates the cosine of the given value;
+ * which is an angle (in radians). */
+__declspec(naked) float _CIcos()
+{
+    __asm { fcos
+                                        ret}
+    ;
+}
+#endif /* defined (_MSC_VER) */
+#endif /* FRAMEWORK == MINIMAL */
 #endif /* defined (ENABLE_MATHEMATICS_SUPPORT) */

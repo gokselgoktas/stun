@@ -36,46 +36,46 @@
 
 int main(int count, char **arguments)
 {
-	layer_t *temporary[2] = { NULL, NULL };
-	layer_t *simplex = NULL;
+    layer_t *temporary[2] = {NULL, NULL};
+    layer_t *simplex = NULL;
 
-	window(1280, 720, WINDOWED);
+    window(1280, 720, WINDOWED);
 
-	glEnable(GL_DEPTH_TEST);
+    glEnable(GL_DEPTH_TEST);
 
-	temporary[0] = layer(WINDOW_WIDTH, WINDOW_HEIGHT);
-	temporary[1] = layer(WINDOW_WIDTH, WINDOW_HEIGHT);
+    temporary[0] = layer(WINDOW_WIDTH, WINDOW_HEIGHT);
+    temporary[1] = layer(WINDOW_WIDTH, WINDOW_HEIGHT);
 
-	do {
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		glLoadIdentity();
+    do {
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glLoadIdentity();
 
-		perspective(WINDOW_WIDTH, WINDOW_HEIGHT, 1.77777778f);
-		glTranslatef(0.f, 0.f, -1.f);
+        perspective(WINDOW_WIDTH, WINDOW_HEIGHT, 1.77777778f);
+        glTranslatef(0.f, 0.f, -1.f);
 
-		bind_accumulation_layer();
+        bind_accumulation_layer();
 
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		/* Render your stuff here, it all goes into the accumulation
-		 * layer; this is done so that after the completion of your
-		 * render operations you can easily apply post-processing
-		 * effects and filters to your render product. */
+        /* Render your stuff here, it all goes into the accumulation
+         * layer; this is done so that after the completion of your
+         * render operations you can easily apply post-processing
+         * effects and filters to your render product. */
 
-		blit_accumulator_to_layer(ACCUMULATION, temporary[0]);
+        blit_accumulator_to_layer(ACCUMULATION, temporary[0]);
 
-		/* Here's an example of a post-processing filter, applying
-		 * Gaussian Blur to the contents of the accumulation buffer. */
-		gaussian_blur(temporary[0], temporary[1]);
+        /* Here's an example of a post-processing filter, applying
+         * Gaussian Blur to the contents of the accumulation buffer. */
+        gaussian_blur(temporary[0], temporary[1]);
 
-		/* Finally, blit everything to back-buffer! */
-		blit_to_back_buffer(temporary[0]);
+        /* Finally, blit everything to back-buffer! */
+        blit_to_back_buffer(temporary[0]);
 
-		flush();
-	} while (!escape());
+        flush();
+    } while (!escape());
 
-	quit();
+    quit();
 
-	/* The sun is setting in the sky, Teletubbies say goodbye! */
-	return EXIT_SUCCESS;
+    /* The sun is setting in the sky, Teletubbies say goodbye! */
+    return EXIT_SUCCESS;
 }
